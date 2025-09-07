@@ -1,0 +1,112 @@
+.contact-list {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	padding: 20px;
+	width: 100%;
+
+	outline: 1px solid #cba6f7;
+
+	&__checkbox {
+		display: block;
+		position: relative;
+        margin-bottom: 30px;
+        margin-right: 30px;
+        margin-left: 5px;
+        margin-top: 5px;
+		cursor: pointer;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+
+		& input {
+			position: absolute;
+            top: 0;
+            left: 0;
+			opacity: 0;
+			cursor: pointer;
+			height: 25px;
+			width: 25px;
+            z-index: 1;
+		}
+
+		&-checkmark {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 25px;
+			width: 25px;
+			background-color: #0a000c;
+            outline: 1px solid #cba6f7;
+		}
+
+		&:hover input ~ &-checkmark {
+			background-color: #1f1626;
+		}
+
+		& input:checked ~ &-checkmark {
+			background-color: #cba6f7;
+		}
+
+		&-checkmark:after {
+			content: "";
+			position: absolute;
+			display: none;
+		}
+
+		& input:checked ~ &-checkmark:after {
+			display: block;
+		}
+
+		& &-checkmark:after {
+			left: 10px;
+			top: 7px;
+			width: 5px;
+			height: 10px;
+			border: solid white;
+			border-width: 0 3px 3px 0;
+			-webkit-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+	}
+
+	&__item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 10px;
+
+		width: 100%;
+		padding: 10px;
+
+		outline: 1px solid #cba6f7;
+	}
+
+	&__text {
+		margin: 0;
+
+        &-checked {
+            text-decoration: line-through;
+        }
+	}
+
+	&__delete {
+		background-color: #0a000c;
+		color: #cba6f7;
+		fill: #cba6f7;
+		outline: 1px solid #cba6f7;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		padding: 10px;
+
+		&:hover {
+			background-color: #1f1626;
+		}
+	}
+}
