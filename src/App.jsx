@@ -26,7 +26,19 @@ class App extends Component {
 	handleAdd = (name, number) => {
 		if (!name || !number) return;
 
-		name = name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ')
+		name = name
+			.split(" ")
+			.map((word) =>
+				word
+					.split("-")
+					.map((el) =>
+						el.includes("'")
+							? el.slice(0, el.indexOf("'") + 1) + el.charAt(el.indexOf("'") + 1).toUpperCase() + el.slice(el.indexOf("'") + 2).toLowerCase()
+							: el.charAt(0).toUpperCase() + el.slice(1).toLowerCase()
+					)
+					.join("-")
+			)
+			.join(" ");
 
 		if (this.state.contacts.filter((contact) => contact.name.toLowerCase() === name.toLowerCase()).length) {
 			alert(`${name} is already in contacts`);
