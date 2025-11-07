@@ -4,22 +4,21 @@ import { MdDeleteOutline } from "react-icons/md";
 
 import styles from "./ContactList.module.scss";
 
-export class Contact extends Component {
-	handleDelete = () => {
-		this.props.handleDelete(this.props.id);
+export const Contact = function ({ id, name, number, handleDelete }) {
+	const handleSelfDelete = () => {
+		handleDelete(id);
 	};
 
-	render() {
+	
 		return (
 			<>
 				<li className={styles["contact-list__item"]}>
-					<p className={styles["contact-list__text"]}>{this.props.name}: {this.props.number}</p>
+					<p className={styles["contact-list__text"]}>{name}: {number}</p>
 
-					<button className={styles["contact-list__delete"]} onClick={this.handleDelete}>
+					<button className={styles["contact-list__delete"]} onClick={handleSelfDelete}>
 						<MdDeleteOutline />
 					</button>
 				</li>
 			</>
 		);
-	}
 }

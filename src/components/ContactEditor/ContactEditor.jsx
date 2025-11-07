@@ -1,9 +1,7 @@
-import { Component } from "react";
-
 import styles from "./ContactEditor.module.scss";
 
-export class ContactEditor extends Component {
-	handleSubmit = (evt) => {
+export const ContactEditor = function ({ onAdd }) {
+	const handleSubmit = (evt) => {
 		evt.preventDefault();
 
 		const form = evt.currentTarget;
@@ -25,44 +23,42 @@ export class ContactEditor extends Component {
 			return;
 		}
 
-		this.props.onAdd(name, number);
+		onAdd(name, number);
 
 		form.reset();
 	};
 
-	render() {
-		return (
-			<>
-				<form onSubmit={this.handleSubmit} className={styles["contact-editor"]}>
-					<p htmlFor="name" className={styles["contact-editor__label"]}>
-						name
-					</p>
-					<input
-						type="text"
-						name="name"
-						className={styles["contact-editor__input"]}
-						title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-						// pattern="/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/"
-						required
-					/>
+	return (
+		<>
+			<form onSubmit={handleSubmit} className={styles["contact-editor"]}>
+				<p htmlFor="name" className={styles["contact-editor__label"]}>
+					name
+				</p>
+				<input
+					type="text"
+					name="name"
+					className={styles["contact-editor__input"]}
+					title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+					// pattern="/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/"
+					required
+				/>
 
-					<p htmlFor="name" className={styles["contact-editor__label"]}>
-						number
-					</p>
-					<input
-						type="text"
-						name="number"
-						className={styles["contact-editor__input"]}
-						title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-						// pattern="/\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/"
-						required
-					/>
+				<p htmlFor="name" className={styles["contact-editor__label"]}>
+					number
+				</p>
+				<input
+					type="text"
+					name="number"
+					className={styles["contact-editor__input"]}
+					title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+					// pattern="/\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/"
+					required
+				/>
 
-					<button type="submit" className={styles["contact-editor__button"]}>
-						add
-					</button>
-				</form>
-			</>
-		);
-	}
-}
+				<button type="submit" className={styles["contact-editor__button"]}>
+					add
+				</button>
+			</form>
+		</>
+	);
+};

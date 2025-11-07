@@ -1,12 +1,10 @@
-import { Component } from "react";
 import styles from "./Container.module.scss";
 
-export class Container extends Component {
-	render() {
+export const Container = function ({ children }) {
+	
 		return (
 			<>
-				<div className={styles["container"]}>{this.props.children}</div>
+				<div className={styles["container"]}>{children}</div>
 			</>
 		);
-	}
 }

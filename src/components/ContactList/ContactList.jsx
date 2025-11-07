@@ -4,15 +4,15 @@ import { Contact } from "./Contact";
 
 import styles from "./ContactList.module.scss";
 
-export class ContactList extends Component {
-	render() {
+export const ContactList = function ({ contacts, onCheck, handleDelete }) {
+	
 		return (
 			<>
 				<ul className={styles["contact-list"]}>
-					{this.props.contacts.map((contact) => (
+					{contacts.map((contact) => (
 						<Contact
-							onCheck={this.props.onCheck}
-							handleDelete={this.props.handleDelete}
+							onCheck={onCheck}
+							handleDelete={handleDelete}
 							id={contact.id}
 							name={contact.name}
 							number={contact.number}
@@ -23,5 +23,4 @@ export class ContactList extends Component {
 				</ul>
 			</>
 		);
-	}
 }
