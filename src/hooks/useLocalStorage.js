@@ -6,6 +6,11 @@ export const useLocalStorage = function ({ key, defaultValue }) {
 		return [undefined, () => {}];
 	}
 
+	if (!defaultValue) {
+		console.error('Argument "defaultValue" is required');
+		return [undefined, () => {}];
+	}
+
 	const [value, setValue] = useState(() => {
 		try {
 			const storedValue = localStorage.getItem(key);
