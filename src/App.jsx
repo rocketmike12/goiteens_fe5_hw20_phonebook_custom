@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 import { nanoid } from "nanoid";
 
@@ -9,14 +10,8 @@ import { Filter } from "./components/Filter/Filter";
 import { ContactList } from "./components/ContactList/ContactList";
 
 const App = function () {
-	let [contacts, setContacts] = useState([]);
+	let [contacts, setContacts] = useLocalStorage({ key: "phonebookContacts", defaultValue: [] });
 	let [filter, setFilter] = useState("");
-
-	useEffect(() => {
-		setContacts(JSON.parse(localStorage.getItem("phonebookContacts")) || []);
-	}, []);
-
-	useEffect(() => {});
 
 	const handleAdd = (name, number) => {
 		if (!name || !number) return;
@@ -42,10 +37,7 @@ const App = function () {
 
 		const newContact = { id: nanoid(), name: name, number: number, completed: false };
 
-		setContacts((currentContacts) => {
-			localStorage.setItem("phonebookContacts", JSON.stringify([...currentContacts, newContact]));
-			return [...currentContacts, newContact];
-		});
+		setContacts([...contacts, newContact]);
 	};
 
 	const handleFilter = (e) => {
